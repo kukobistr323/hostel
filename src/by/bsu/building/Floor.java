@@ -35,7 +35,10 @@ public class Floor {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Floor on ").append(numberOfRooms).append(" rooms");
+        sb.append("Floor on ").append(numberOfRooms).append(" rooms\n");
+        for (int i = 0; i < numberOfRooms; i++) {
+            sb.append(rooms[i]).append("\n");
+        }
         return sb.toString();
     }
 

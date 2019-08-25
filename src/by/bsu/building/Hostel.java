@@ -21,7 +21,10 @@ public class Hostel {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Hostel on ").append(FLOORS).append(" floors");
+        sb.append("Hostel on ").append(FLOORS).append(" floors\n");
+        for (int i = 0; i < FLOORS; i++) {
+            sb.append(floors[i]).append("\n");
+        }
         return sb.toString();
     }
 

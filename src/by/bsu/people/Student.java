@@ -11,6 +11,7 @@ public class Student extends Human implements Observable {
     private int comments;
     private int roomNumber;
     private boolean payment;
+    private boolean pass;
 
     public Student() {
         super();
@@ -25,12 +26,13 @@ public class Student extends Human implements Observable {
     }
 
     public Student(String name, String surname, String birthDate,
-                   int course, int comments, int roomNumber, boolean payment) {
+                   int course, int comments, int roomNumber, boolean payment, boolean pass) {
         super(name, surname, birthDate);
         this.course = course;
         this.comments = comments;
         this.roomNumber = roomNumber;
         this.payment = payment;
+        this.pass = pass;
     }
 
     public boolean isDeptor() {
@@ -41,6 +43,10 @@ public class Student extends Human implements Observable {
     public void newYear() {
         course++;
         comments = 0;
+    }
+
+    public void incrementComments() {
+        comments++;
     }
 
     public int getComments() {
@@ -75,13 +81,22 @@ public class Student extends Human implements Observable {
         this.roomNumber = roomNumber;
     }
 
+    public boolean isPass() {
+        return pass;
+    }
+
+    public void setPass(boolean pass) {
+        this.pass = pass;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());
         sb.append("\nCourse: ").append(course)
                 .append("\nComments: ").append(comments)
                 .append("\nRoom number: ").append(roomNumber)
-                .append("\nPaid tution: ").append(payment ? "Yes" : "No");
+                .append("\nPaid tution: ").append(payment ? "Yes" : "No")
+                .append("\nPass: ").append(pass ? "Yes" : "No");
         return sb.toString();
     }
 
@@ -94,11 +109,12 @@ public class Student extends Human implements Observable {
         return course == student.course &&
                 comments == student.comments &&
                 roomNumber == student.roomNumber &&
-                payment == student.payment;
+                payment == student.payment &&
+                pass == student.pass;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), course, comments, roomNumber, payment);
+        return Objects.hash(super.hashCode(), course, comments, roomNumber, payment, pass);
     }
 }

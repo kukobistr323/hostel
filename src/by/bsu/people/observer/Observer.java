@@ -1,7 +1,7 @@
 package by.bsu.people.observer;
 
-import by.bsu.people.Commandant;
-import by.bsu.people.Security;
+import by.bsu.people.administration.Commandant;
+import by.bsu.people.administration.Security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +28,6 @@ public class Observer {
 
     public void setNewYear() {
         observables.forEach(Observable::newYear);
-    }
-
-    public void removeAllDebtors() {
-        for (Observable observable : observables) {
-            int order = (int) Math.random() * 2;
-
-        }
     }
 
     public Commandant getCommandant() {

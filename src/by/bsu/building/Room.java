@@ -32,6 +32,7 @@ public class Room {
             throw new FullRoomException("The room is full");
         }
         students.add(student);
+        student.setRoomNumber(roomNumber);
     }
 
     public boolean havePlace() {
@@ -61,8 +62,8 @@ public class Room {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Room ").append(roomNumber).append(". Students:");
-        students.forEach(student -> sb.append(student));
+        sb.append("Room ").append(roomNumber).append(". Students:\n");
+        students.forEach(student -> sb.append(student).append("\n"));
         return sb.toString();
     }
 
