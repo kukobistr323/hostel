@@ -9,13 +9,9 @@ import java.util.Objects;
 
 public class Observer {
     private List<Observable> observables;
-    private Commandant commandant;
-    private Security security;
 
-    public Observer(Commandant commandant, Security security) {
+    public Observer() {
         observables = new ArrayList<>(100);
-        this.commandant = commandant;
-        this.security = security;
     }
 
     public void addObservable(Observable observable) {
@@ -30,14 +26,6 @@ public class Observer {
         observables.forEach(Observable::newYear);
     }
 
-    public Commandant getCommandant() {
-        return commandant;
-    }
-
-    public void setCommandant(Commandant commandant) {
-        this.commandant = commandant;
-    }
-
     public List<Observable> getObservables() {
         return observables;
     }
@@ -46,26 +34,16 @@ public class Observer {
         this.observables = observables;
     }
 
-    public Security getSecurity() {
-        return security;
-    }
-
-    public void setSecurity(Security security) {
-        this.security = security;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Observer observer = (Observer) o;
-        return Objects.equals(observables, observer.observables) &&
-                Objects.equals(commandant, observer.commandant) &&
-                Objects.equals(security, observer.security);
+        return Objects.equals(observables, observer.observables);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(observables, commandant, security);
+        return Objects.hash(observables);
     }
 }

@@ -63,7 +63,8 @@ public class Room {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Room ").append(roomNumber).append(". Students:\n");
-        students.forEach(student -> sb.append(student).append("\n"));
+        students.forEach(student -> sb.append(student.getName())
+                .append(" ").append(student.getSurname()).append("\n"));
         return sb.toString();
     }
 

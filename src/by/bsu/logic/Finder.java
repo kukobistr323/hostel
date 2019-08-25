@@ -4,6 +4,7 @@ import by.bsu.building.Floor;
 import by.bsu.building.Hostel;
 import by.bsu.building.Room;
 import by.bsu.people.Student;
+import by.bsu.people.administration.Chief;
 
 public class Finder {
 
@@ -16,6 +17,17 @@ public class Finder {
             for (Room room : floor.getRooms()) {
                 if (room.havePlace()) {
                     return room;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Student findFutureChiefBy(int floorNumber, Hostel hostel) {
+        for (Room room : hostel.getFloors()[floorNumber].getRooms()) {
+            for (Student student : room.getStudents()) {
+                if (student.getCourse() > Chief.REQUIRED_COURSE && !student.isDeptor()) {
+                    return student;
                 }
             }
         }

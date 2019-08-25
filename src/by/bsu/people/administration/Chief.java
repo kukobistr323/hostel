@@ -1,10 +1,13 @@
 package by.bsu.people.administration;
 
+import by.bsu.messages.ChiefMessages;
 import by.bsu.people.Student;
 
 import java.util.Objects;
 
 public class Chief {
+
+    public static final int REQUIRED_COURSE = 1;
     private Student student;
     private int floor;
 
@@ -19,6 +22,7 @@ public class Chief {
     public void makeComment(Student student) {
         if (!this.student.equals(student)) {
             student.incrementComments();
+            ChiefMessages.commentMessage(student);
         }
     }
 
