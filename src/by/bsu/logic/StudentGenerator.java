@@ -32,6 +32,11 @@ public class StudentGenerator {
                 generateCourse(), 0, 0, true, true);
     }
 
+    public static Student generateStudentWithoutPass(){
+        return new Student(generateName(), generateSurname(), generateBirthDate(),
+                generateCourse(), 0, 0, true, false);
+    }
+
     private static String generateName() {
         int index = (int) (random() * names.size());
         return names.get(index);

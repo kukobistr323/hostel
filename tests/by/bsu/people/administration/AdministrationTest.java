@@ -1,4 +1,4 @@
-package by.bsu.action;
+package by.bsu.people.administration;
 
 import by.bsu.building.Hostel;
 import by.bsu.excepions.FullHostelException;
@@ -6,20 +6,20 @@ import by.bsu.excepions.FullRoomException;
 import by.bsu.logic.HostelFactory;
 import by.bsu.logic.fillers.ChiefsFiller;
 import by.bsu.logic.fillers.HostelFiller;
-import by.bsu.people.administration.Administration;
-import by.bsu.people.administration.Commandant;
-import by.bsu.people.administration.Security;
+import by.bsu.people.Student;
 import by.bsu.people.observer.Observer;
+import org.junit.*;
 
-public class Life {
+public class AdministrationTest {
 
     private Hostel hostel;
-    private Observer observer;
     private Commandant commandant;
     private Security security;
+    private Observer observer;
     private Administration administration;
 
-    public Life() {
+    @Before
+    public void beforeTest() throws FullRoomException, FullHostelException {
         hostel = HostelFactory.createHostel();
         observer = new Observer();
         commandant = new Commandant("Aleksey", "Petrovich", "19.12.1960",
@@ -27,19 +27,20 @@ public class Life {
         security = new Security("Eduard", "Kuzmin", "15.02.1990",
                 hostel, observer);
         administration = new Administration(hostel, commandant, security);
+        HostelFiller.fillHostel(hostel, commandant);
+        ChiefsFiller.appointChiefs(administration);
     }
 
-    public void start() {
-        try {
-            HostelFiller.fillHostel(hostel, commandant);
-            ChiefsFiller.appointChiefs(administration);
-//            while (true) {
-
-            observer.setNewYear();
-            administration.removeAllDebtors();
-//            }
-        } catch (FullRoomException | FullHostelException ex) {
-            System.out.println(ex.getMessage());
-        }
+    @Test
+    public void checkRemoveChiefs() {
+        Student student = administration.getChiefs().get(0).getStudent();
+        administration.remove(student);
     }
+
+    @Test
+    public void checkRemoveAll() {
+        observer.setNewYear();
+        administration.removeAllDebtors();
+    }
+
 }

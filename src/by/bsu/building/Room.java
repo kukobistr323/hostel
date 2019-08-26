@@ -39,6 +39,10 @@ public class Room {
         return students.size() < NUMBER_OF_STUDENTS;
     }
 
+    public boolean removeStudents() {
+        return students.removeIf(Student::isDeptor);
+    }
+
     public boolean removeStudent(Student student) {
         return students.remove(student);
     }

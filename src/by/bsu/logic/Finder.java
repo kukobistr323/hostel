@@ -9,7 +9,7 @@ import by.bsu.people.administration.Chief;
 public class Finder {
 
     public static Room findRoomBy(Student student, Hostel hostel) {
-        return hostel.getFloors()[student.getRoomNumber() / 100].getRooms()[student.getRoomNumber() % 10];
+        return hostel.getFloors()[student.getRoomNumber() / 100 - 1].getRooms()[student.getRoomNumber() % 10 - 1];
     }
 
     public static Room findEmptyRoom(Hostel hostel) {
@@ -24,7 +24,7 @@ public class Finder {
     }
 
     public static Student findFutureChiefBy(int floorNumber, Hostel hostel) {
-        for (Room room : hostel.getFloors()[floorNumber].getRooms()) {
+        for (Room room : hostel.getFloors()[floorNumber - 1].getRooms()) {
             for (Student student : room.getStudents()) {
                 if (student.getCourse() > Chief.REQUIRED_COURSE && !student.isDeptor()) {
                     return student;

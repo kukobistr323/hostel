@@ -4,13 +4,15 @@ import by.bsu.building.Floor;
 import by.bsu.building.Hostel;
 import by.bsu.building.Room;
 import by.bsu.logic.Finder;
+import by.bsu.messages.AdministrationMessages;
 import by.bsu.people.Student;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Administration {
+public class Administration implements Removal {
     public static final int CHANCE_FOR_COMMENT = 4;
     private Hostel hostel;
     private List<Chief> chiefs;
@@ -32,11 +34,12 @@ public class Administration {
 
     public void appointChief(int floorNumber) {
         Student student = Finder.findFutureChiefBy(floorNumber, hostel);
-        chiefs.add(floorNumber, commandant.createChief(student));
+        chiefs.add(floorNumber - 1, commandant.createChief(student));
     }
 
     public void removeChief(int floorNumber) {
-        chiefs.remove(floorNumber);
+        AdministrationMessages.removeMessage(chiefs.get(floorNumber));
+        chiefs.remove(floorNumber - 1);
     }
 
     public void hostelRounds(int floorNumber) {
@@ -51,19 +54,18 @@ public class Administration {
         }
     }
 
+
+    //FIX IT PLEASE!!!
     public void removeAllDebtors() {
         for (Floor floor : hostel.getFloors()) {
             for (Room room : floor.getRooms()) {
-                for (Student student : room.getStudents()) {
-                    if (student.isDeptor()) {
-                        remove(student);
-                    }
-                }
+                room.removeStudents();
             }
         }
     }
 
-    private void remove(Student student) {
+    @Override
+    public void remove(Student student) {
         int chance = (int) (Math.random() * 2);
         if (chance == 0) {
             commandant.remove(student);
@@ -78,7 +80,7 @@ public class Administration {
     }
 
     private boolean isChief(Student student) {
-        return chiefs.contains(student);
+        return chiefs.contains(new Chief(student));
     }
 
     public List<Chief> getChiefs() {
