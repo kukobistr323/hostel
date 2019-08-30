@@ -11,8 +11,8 @@ jdk version 1.8.0 and more.
 
 Start
 ---
-To start a project you need:
-1. build a project;
+To start the project you need:
+1. build project;
 2. run main in Main.java;
 
 
