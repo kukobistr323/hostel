@@ -1,10 +1,10 @@
 package by.bsu;
 
-import by.bsu.action.Life;
+import by.bsu.action.HostelAction;
 
 public class Main {
     public static void main(String[] args) {
-        Life life = new Life();
+        HostelAction life = new HostelAction();
         life.start();
     }
 }

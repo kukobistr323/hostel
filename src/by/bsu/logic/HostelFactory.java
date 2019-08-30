@@ -1,8 +1,8 @@
 package by.bsu.logic;
 
-import by.bsu.building.Floor;
-import by.bsu.building.Hostel;
-import by.bsu.building.Room;
+import by.bsu.entity.building.Floor;
+import by.bsu.entity.building.Hostel;
+import by.bsu.entity.building.Room;
 
 public class HostelFactory {
 

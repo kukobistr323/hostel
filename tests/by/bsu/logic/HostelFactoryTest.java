@@ -1,9 +1,7 @@
 package by.bsu.logic;
 
-import by.bsu.building.Hostel;
+import by.bsu.entity.building.Hostel;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class HostelFactoryTest {
 
