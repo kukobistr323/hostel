@@ -1,4 +1,4 @@
-# hostel
+# Hostel
 Hostel
 ======
 
